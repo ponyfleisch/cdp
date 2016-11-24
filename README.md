@@ -17,6 +17,14 @@ const server = cdp.start();
 server.on('position', (data) => {
     console.log(data);
 });
+
+server.on('masterposition', (data) => {
+    console.log(data);
+});
+
+server.on('anchorposition', (data) => {
+    console.log(data);
+});
 ```
 
 data format:

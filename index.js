@@ -56,6 +56,18 @@ function parseMessage(msg){
                     tag: header.device,
                     position: dataItem.data.coordinates
                 });
+            }else if(dataItem.header.type == '0x102'){
+                if(dataItem.data.nodeType == 'master'){
+                    emitter.emit('masterposition', {
+                        tag: dataItem.data.serial,
+                        position: dataItem.data.coordinates
+                    });
+                }else if(dataItem.data.nodeType == 'anchor'){
+                    emitter.emit('anchorposition', {
+                        tag: dataItem.data.serial,
+                        position: dataItem.data.coordinates
+                    });
+                }
             }
             pos += dataItem.header.size + 4;
         }
